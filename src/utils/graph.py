@@ -45,20 +45,42 @@ def histogram_plot(data, x_label, y_label, title, file_path):
     save_plot(fig, file_path)
 
 if __name__ == "__main__":
-    file_path = '..\..\data\Modified_SQL_Dataset.csv'
+    file_path = '../../data/updated_sql_dataset.csv'
     df = load_data(file_path)
 
     target_column = df['Label']
-    x1_column = df['Query']
-#----------------------------------------patates-----------------------------------
-    scatter_plot(target_column, 'Index', 'Label', 'Scatter Plot of Label Column', '../../data/graph/scatter_label_column.png')
-    box_plot(target_column, 'Label', 'Box Plot of Label Column', '../../data/graph/boxplot_label_column.png')
-    bar_plot(target_column, 'Index', 'Label', 'Bar Graph of Label Column', '../../data/graph/bargraph_label_column.png')
-    pie_plot(target_column, 'Pie Plot of Label Column', '../../data/graph/pieplot_label_column.png')
-    histogram_plot(target_column, 'Label', 'Frequency', 'Histogram of Label Column', '../../data/graph/histogram_label_column.png')
-#----------------------------------------sogan-------------------------------------
-    scatter_plot(x1_column, 'Index', 'Query', 'Scatter Plot of Query Column', '../../data/graph/scatter_query_column.png')
-    box_plot(x1_column, 'Query', 'Box Plot of Query Column', '../../data/graph/boxplot_query_column.png')
-    bar_plot(x1_column, 'Index', 'Query', 'Bar Graph of Query Column', '../../data/graph/bargraph_query_column.png')
-    pie_plot(x1_column, 'Pie Plot of Query Column', '../../data/graph/pieplot_query_column.png')
-    histogram_plot(x1_column, 'Query', 'Frequency', 'Histogram of Query Column', '../../data/graph/histogram_query_column.png')
+    query_column = df['Query']
+    select_column = df['SELECT']
+    union_column = df['UNION']
+    or_column = df['OR']
+    and_column = df['AND']
+
+    scatter_plot(target_column, 'Index', 'Label', 'Scatter Plot of Label Column', '../../data/data_vsl/scatter_label_column.png')
+    box_plot(target_column, 'Label', 'Box Plot of Label Column', '../../data/data_vsl/boxplot_label_column.png')
+    bar_plot(target_column, 'Index', 'Label', 'Bar data_vsl of Label Column', '../../data/data_vsl/bardata_vsl_label_column.png')
+    pie_plot(target_column, 'Pie Plot of Label Column', '../../data/data_vsl/pieplot_label_column.png')
+    histogram_plot(target_column, 'Label', 'Frequency', 'Histogram of Label Column', '../../data/data_vsl/histogram_label_column.png')
+
+    scatter_plot(select_column, 'Index', 'SELECT', 'Scatter Plot of SELECT Column', '../../data/data_vsl/scatter_select_column.png')
+    box_plot(select_column, 'SELECT', 'Box Plot of SELECT Column', '../../data/data_vsl/boxplot_select_column.png')
+    bar_plot(select_column, 'Index', 'SELECT', 'Bar data_vsl of SELECT Column', '../../data/data_vsl/bardata_vsl_select_column.png')
+    pie_plot(select_column, 'Pie Plot of SELECT Column', '../../data/data_vsl/pieplot_select_column.png')
+    histogram_plot(select_column, 'SELECT', 'Frequency', 'Histogram of SELECT Column', '../../data/data_vsl/histogram_select_column.png')
+
+    scatter_plot(union_column, 'Index', 'UNION', 'Scatter Plot of UNION Column', '../../data/data_vsl/scatter_union_column.png')
+    box_plot(union_column, 'UNION', 'Box Plot of UNION Column', '../../data/data_vsl/boxplot_union_column.png')
+    bar_plot(union_column, 'Index', 'UNION', 'Bar data_vsl of UNION Column', '../../data/data_vsl/bardata_vsl_union_column.png')
+    pie_plot(union_column, 'Pie Plot of UNION Column', '../../data/data_vsl/pieplot_union_column.png')
+    histogram_plot(union_column, 'UNION', 'Frequency', 'Histogram of UNION Column', '../../data/data_vsl/histogram_union_column.png')
+
+    scatter_plot(or_column, 'Index', 'OR', 'Scatter Plot of OR Column', '../../data/data_vsl/scatter_or_column.png')
+    box_plot(or_column, 'OR', 'Box Plot of OR Column', '../../data/data_vsl/boxplot_or_column.png')
+    bar_plot(or_column, 'Index', 'OR', 'Bar data_vsl of OR Column', '../../data/data_vsl/bardata_vsl_or_column.png')
+    pie_plot(or_column, 'Pie Plot of OR Column', '../../data/data_vsl/pieplot_or_column.png')
+    histogram_plot(or_column, 'OR', 'Frequency', 'Histogram of OR Column', '../../data/data_vsl/histogram_or_column.png')
+
+    scatter_plot(and_column, 'Index', 'AND', 'Scatter Plot of AND Column', '../../data/data_vsl/scatter_and_column.png')
+    box_plot(and_column, 'AND', 'Box Plot of AND Column', '../../data/data_vsl/boxplot_and_column.png')
+    bar_plot(and_column, 'Index', 'AND', 'Bar data_vsl of AND Column', '../../data/data_vsl/bardata_vsl_and_column.png')
+    pie_plot(and_column, 'Pie Plot of AND Column', '../../data/data_vsl/pieplot_and_column.png')
+    histogram_plot(and_column, 'AND', 'Frequency', 'Histogram of AND Column', '../../data/data_vsl/histogram_and_column.png')
