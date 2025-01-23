@@ -1,0 +1,3 @@
+Column,Description
+Query,The SQL query being analyzed for potential SQL injection.
+Label,Indicates whether the query is malicious (1) or benign (0).
