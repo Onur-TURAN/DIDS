@@ -7,7 +7,7 @@ if not os.path.exists("graph"):
     os.makedirs("graph")
 
 # CSV dosyasını yükle
-data = pd.read_csv("D:\code\DIDS\test.csv")
+data = pd.read_csv("data/test.csv")
 
 # Veri çerçevesini incele
 print(data.info())

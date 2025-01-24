@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import joblib
 import time
 
-data = pd.read_csv('../data/updated_sql_dataset_v2.csv')
+data = pd.read_csv('../data/train.csv')
 
 vectorizer = TfidfVectorizer()
 X_query = vectorizer.fit_transform(data['Query'])

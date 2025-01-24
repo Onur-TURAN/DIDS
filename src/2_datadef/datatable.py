@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-file_path = '../../data/updated_sql_dataset.csv'
+file_path = '../../data/alldata.csv'
 data = pd.read_csv(file_path)
 
 first_five_rows = data.head()

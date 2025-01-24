@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import time
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('../../data/updated_sql_dataset_v2.csv')
+data = pd.read_csv('../../data/traindata.csv')
 
 X = data[['Query', 'SELECT', 'UNION', 'OR', 'AND']]
 y = data['Label']
@@ -15,7 +15,7 @@ vectorizer = TfidfVectorizer()
 X_query = vectorizer.fit_transform(X['Query'])
 
 X_other = X[['SELECT', 'UNION', 'OR', 'AND']].values
-X_combined = pd.concat([pd.DataFrame(X_query.toarray()), pd.DataFrame(X_other)], axis=1)
+X_combined = pd.concat([pd.DataFrame(X_query.toarray()), pd.DataFrame(X_other, columns=['SELECT', 'UNION', 'OR', 'AND'])], axis=1).values
 
 X_train, X_test, y_train, y_test = train_test_split(X_combined, y, test_size=0.2, random_state=42)
 
@@ -29,9 +29,9 @@ y_pred = model.predict(X_test)
 
 conf_matrix = confusion_matrix(y_test, y_pred)
 accuracy = accuracy_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='binary')
+recall = recall_score(y_test, y_pred, average='binary')
+f1 = f1_score(y_test, y_pred, average='binary')
 training_time = end_time - start_time
 
 metrics = pd.DataFrame({

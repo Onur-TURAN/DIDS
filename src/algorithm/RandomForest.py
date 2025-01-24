@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import time
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('../../data/updated_sql_dataset_v2.csv')
+data = pd.read_csv('../../data/traindata.csv')
 
 X = data[['Query', 'SELECT', 'UNION', 'OR', 'AND']]
 y = data['Label']

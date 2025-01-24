@@ -7,7 +7,7 @@ import time
 from scipy.sparse import hstack
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('../../data/updated_sql_dataset_v2.csv')
+data = pd.read_csv('../../data/traindata.csv')
 X = data[['Query', 'SELECT', 'UNION', 'OR', 'AND']]
 y = data['Label']
 
