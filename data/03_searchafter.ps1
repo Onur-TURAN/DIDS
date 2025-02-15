@@ -1,10 +1,13 @@
 $originalCsvPath = "results.csv"
-
 $newCsvPath = "alldata.csv"
 
 $data = Import-Csv -Path $originalCsvPath
 
 $updatedData = @()
+
+# Kullanıcıdan yeni sütun adını ve değerini al
+$newColumnName = Read-Host "Yeni sütun adı"
+$newColumnValue = Read-Host "Yeni sütun değeri"
 
 foreach ($row in $data) {
     $updatedRow = [PSCustomObject]@{
@@ -14,8 +17,10 @@ foreach ($row in $data) {
         UNION = $row.UNION
         OR = $row.OR
         AND = $row.AND
-        NewColumn = $row.SELECT
+        NewColkkumn = $row.SELECT
     }
+    # Yeni sütunu ekle
+    $updatedRow | Add-Member -MemberType NoteProperty -Name $newColumnName -Value $newColumnValue
     $updatedData += $updatedRow
 }
 

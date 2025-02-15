@@ -1,5 +1,5 @@
 
-$csvPath = "D:\code\DIDS\trainfalse.csv"
+$csvPath = "trainfalse.csv"
 $lines = Get-Content -Path $csvPath
 $updatedLines = @()
 foreach ($line in $lines) {
