@@ -10,11 +10,16 @@ import joblib
 import time
 
 data = pd.read_csv('../data/train.csv')
-
+data_backup = pd.read_csv('../backup_data/Modified_SQL_Dataset.csv')
+""" FALSE parameter and wrong check line
 vectorizer = TfidfVectorizer()
 X_query = vectorizer.fit_transform(data['Query'])
 
-X_other = data[['SELECT', 'UNION', 'OR', 'AND']]
+X_other = np.array([pd.read_csv(file).columns.values for file in data_backup])
+print(X_other)
+
+"""
+
 X = np.hstack((X_query.toarray(), X_other))
 
 y = data['Label']
