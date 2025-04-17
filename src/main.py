@@ -8,18 +8,38 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 import joblib
 import time
+# Removed unused import of Counter
 
-data = pd.read_csv('../data/train.csv')
-data_backup = pd.read_csv('../backup_data/Modified_SQL_Dataset.csv')
-""" FALSE parameter and wrong check line
+#data = pd.read_csv('../data/train.csv')  # Correctly define 'data'
+data_backup = pd.read_csv('../data/definedata.csv')
+features = data_backup.columns.tolist()
+import matplotlib.pyplot as plt
+
+for feature in features:
+    count_1 = (data_backup[feature] == 1).sum()
+    count_0 = (data_backup[feature] == 0).sum()
+    
+    # Plot the distribution
+    plt.figure(figsize=(6, 4))
+    plt.bar(['0', '1'], [count_0, count_1], color=['blue', 'orange'])
+    plt.title(f"Distribution of Feature '{feature}'")
+    plt.xlabel('Value')
+    plt.ylabel('Count')
+    plt.savefig(feature + '_distribution.png') 
+    
+    print(f"Feature '{feature}': 1s = {count_1}, 0s = {count_0}")
+
+
+
 vectorizer = TfidfVectorizer()
-X_query = vectorizer.fit_transform(data['Query'])
 
-X_other = np.array([pd.read_csv(file).columns.values for file in data_backup])
-print(X_other)
 
-"""
 
+X_test = np.array(columns_header)
+print(len(X_test))
+
+X_query = vectorizer.fit_transform(data['Text'])  # Assuming 'Text' column exists in 'data'
+X_other = np.random.rand(len(data), 5)  # Example placeholder for additional features
 X = np.hstack((X_query.toarray(), X_other))
 
 y = data['Label']
