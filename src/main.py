@@ -19,14 +19,13 @@ for feature in features:
     if data[feature].isin([0, 1]).all():
         count_1 = (data[feature] == 1).sum()
         count_0 = (data[feature] == 0).sum()
-    
     # Plot the distribution
     plt.figure(figsize=(6, 4))
     plt.bar(['0', '1'], [count_0, count_1], color=['blue', 'orange'])
     plt.title(f"Distribution of Feature '{feature}'")
     plt.xlabel('Value')
     plt.ylabel('Count')
-    plt.savefig(feature + '_distribution.png') 
+    plt.savefig(f'../data/plot{feature}_distribution.png') 
     
     print(f"Feature '{feature}': 1s = {count_1}, 0s = {count_0}")
 
