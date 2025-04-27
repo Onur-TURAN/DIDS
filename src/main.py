@@ -16,8 +16,9 @@ features = data.columns.tolist()
 import matplotlib.pyplot as plt
 
 for feature in features:
-    count_1 = (data[feature] == 1).sum()
-    count_0 = (data[feature] == 0).sum()
+    if data[feature].isin([0, 1]).all():
+        count_1 = (data[feature] == 1).sum()
+        count_0 = (data[feature] == 0).sum()
     
     # Plot the distribution
     plt.figure(figsize=(6, 4))
