@@ -11,13 +11,13 @@ import time
 # Removed unused import of Counter
 
 #data = pd.read_csv('../data/train.csv')  # Correctly define 'data'
-data_backup = pd.read_csv('../data/definedata.csv')
-features = data_backup.columns.tolist()
+data = pd.read_csv('../data/traindata.csv')
+features = data.columns.tolist()
 import matplotlib.pyplot as plt
 
 for feature in features:
-    count_1 = (data_backup[feature] == 1).sum()
-    count_0 = (data_backup[feature] == 0).sum()
+    count_1 = (data[feature] == 1).sum()
+    count_0 = (data[feature] == 0).sum()
     
     # Plot the distribution
     plt.figure(figsize=(6, 4))
@@ -33,13 +33,8 @@ for feature in features:
 
 vectorizer = TfidfVectorizer()
 
-
-
-X_test = np.array(columns_header)
-print(len(X_test))
-
-X_query = vectorizer.fit_transform(data['Text'])  # Assuming 'Text' column exists in 'data'
-X_other = np.random.rand(len(data), 5)  # Example placeholder for additional features
+X_query = vectorizer.fit_transform(data['Query'])
+X_other = data.iloc[:, 2:]
 X = np.hstack((X_query.toarray(), X_other))
 
 y = data['Label']
