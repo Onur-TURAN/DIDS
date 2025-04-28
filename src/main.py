@@ -1,5 +1,7 @@
 import pandas as pd 
 import numpy as np
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import f1_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
@@ -8,26 +10,26 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 import joblib
 import time
-# Removed unused import of Counter
+import matplotlib.pyplot as plt
 
 #data = pd.read_csv('../data/train.csv')  # Correctly define 'data'
 data = pd.read_csv('../data/traindata.csv')
 features = data.columns.tolist()
-import matplotlib.pyplot as plt
+
 
 for feature in features:
     if data[feature].isin([0, 1]).all():
         count_1 = (data[feature] == 1).sum()
         count_0 = (data[feature] == 0).sum()
-    # Plot the distribution
-    plt.figure(figsize=(6, 4))
-    plt.bar(['0', '1'], [count_0, count_1], color=['blue', 'orange'])
-    plt.title(f"Distribution of Feature '{feature}'")
-    plt.xlabel('Value')
-    plt.ylabel('Count')
-    plt.savefig(f'../data/plot{feature}_distribution.png') 
+    # general Plot graph code
+        plt.figure(figsize=(6, 4))
+        plt.bar(['0', '1'], [count_0, count_1], color=['blue', 'orange'])
+        plt.title(f"Distribution of Feature '{feature}'")
+        plt.xlabel('Value')
+        plt.ylabel('Count')
+        plt.savefig(f'../data/plot/{feature}_distribution.png') 
     
-    print(f"Feature '{feature}': 1s = {count_1}, 0s = {count_0}")
+        print(f"Feature '{feature}': 1s = {count_1}, 0s = {count_0}")
 
 
 
@@ -47,10 +49,13 @@ models = {
     "Logistic Regression": LogisticRegression(),
     "Decision Tree": DecisionTreeClassifier()
 }
-
+# genereal Train and evaluate each model 
 for name, model in models.items():
     start_time = time.time()
     model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred, average='weighted')
     end_time = time.time()
     elapsed_time = end_time - start_time
     joblib.dump(model, f'{name.replace(" ", "_").lower()}_model.pkl')
