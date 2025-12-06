@@ -6,6 +6,8 @@
 *.csv
 *.txt
 *.log
+# Exception: include CSV files in data/pattern/
+!data/pattern/*.csv
 *.zip
 *.tar
 *.tar.gz
