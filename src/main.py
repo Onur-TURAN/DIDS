@@ -27,7 +27,7 @@ for feature in features:
         plt.title(f"Distribution of Feature '{feature}'")
         plt.xlabel('Value')
         plt.ylabel('Count')
-        plt.savefig(f'../data/plot/{feature}_distribution.png') 
+        plt.savefig(f'../data/output/plot/{feature}_distribution.png') 
     
         print(f"Feature '{feature}': 1s = {count_1}, 0s = {count_0}")
 
